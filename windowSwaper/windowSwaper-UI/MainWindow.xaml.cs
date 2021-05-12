@@ -18,11 +18,26 @@ namespace windowSwaper_UI
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
+    /// 
+
     public partial class MainWindow : Window
     {
+
+        public static RoutedCommand MyCommand = new RoutedCommand();
+        private static int shortcutUses = 0;
+
+
+
         public MainWindow()
         {
             InitializeComponent();
+            MyCommand.InputGestures.Add(new KeyGesture(Key.S, ModifierKeys.Control));
+        }
+
+        public void MyCommandExecuted(object sender, ExecutedRoutedEventArgs e) 
+        {
+            shortcutUses++;
+            shortcutUseDebug.Text = shortcutUses.ToString();
         }
     }
 }
