@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31205.134
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "windowSwaper-UI", "windowSwaper-UI\windowSwaper-UI.csproj", "{08553B84-C165-4247-8CBB-218B1D3759BB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{08553B84-C165-4247-8CBB-218B1D3759BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{08553B84-C165-4247-8CBB-218B1D3759BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{08553B84-C165-4247-8CBB-218B1D3759BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{08553B84-C165-4247-8CBB-218B1D3759BB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B88FD354-B5F0-4184-90B6-C5AD99A6E0C2}
+	EndGlobalSection
+EndGlobal
