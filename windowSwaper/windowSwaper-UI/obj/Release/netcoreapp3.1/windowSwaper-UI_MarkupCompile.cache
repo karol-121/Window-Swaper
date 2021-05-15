@@ -4,11 +4,11 @@
 winexe
 C#
 .cs
-E:\Dokumenty\Github\windowSwaper\windowSwaper\windowSwaper-UI\obj\Debug\netcoreapp3.1\
+E:\Dokumenty\Github\windowSwaper\windowSwaper\windowSwaper-UI\obj\Release\netcoreapp3.1\
 windowSwaper_UI
 none
 false
-TRACE;DEBUG;NETCOREAPP;NETCOREAPP3_1;
+TRACE;RELEASE;NETCOREAPP;NETCOREAPP3_1;
 E:\Dokumenty\Github\windowSwaper\windowSwaper\windowSwaper-UI\App.xaml
 11407045341
 
@@ -16,5 +16,5 @@ E:\Dokumenty\Github\windowSwaper\windowSwaper\windowSwaper-UI\App.xaml
 192-1533232326
 MainWindow.xaml;
 
-False
+True
 
