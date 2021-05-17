@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -21,7 +22,6 @@ namespace windowSwaper_UI
 
         private static List<IntPtr> handles;
         private static List<string> titles;
-
         
         private static HwndObject window_1;
         private static HwndObject window_2;
@@ -33,26 +33,25 @@ namespace windowSwaper_UI
         public App()
         {
             hotkey = new HotKey(System.Windows.Input.Key.K, KeyModifier.Ctrl, OnHotKeyHandler);
-       
+            DesktopWindowsStuff.windowTitleToExclude = "MainWindow"; //add title of the main window to be excluded when list of open widows is fetch
         }
 
 
-
-        public static String getShortcut()
+        public static String getDebugString()
         {
-            return hotkey.Key + " + " + hotkey.KeyModifiers;
+            return window_1.Location.ToString() + " " + window_2.Location.ToString();
         }
 
         private static void OnHotKeyHandler(HotKey obj)
         {
-            
+            //thing that happen after hotkey is pressed
+
             DesktopWindowsStuff.GetDesktopWindowHandlesAndTitles(out handles, out titles);
-            Console.WriteLine(titles[0] + " | " + titles[1]);
+            Debug.Print(titles[0] + " | " + titles[1]);
 
             window_1 = new HwndObject(handles[0]);
             window_2 = new HwndObject(handles[1]);
 
-            //thing that happen after hotkey is pressed
 
             window_1_location = window_1.Location;
             window_2_location = window_2.Location;

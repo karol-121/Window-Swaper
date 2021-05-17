@@ -30,7 +30,7 @@ namespace windowSwaper_UI
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            shortcutUseDebug.Text = App.getShortcut();
+            debugString.Text = App.getDebugString();
         }
     }
 }

@@ -21,9 +21,9 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="10"/>
         </Grid.RowDefinitions>
-        <TextBlock Grid.Column="1" Grid.Row="1" Text="Amout of shortcut use detected:"></TextBlock>
-        <TextBlock x:Name="shortcutUseDebug" Grid.Column="1" Grid.Row="2" Text=""></TextBlock>
-        <Button Grid.Column="1" Grid.Row="3" Content="refresh" Click="Button_Click"></Button>
+        <TextBlock Grid.Column="1" Grid.Row="1" Text="Debug line:"></TextBlock>
+        <TextBlock x:Name="debugString" Grid.Column="1" Grid.Row="2" Text=""></TextBlock>
+        <Button Grid.Column="1" Grid.Row="3" Content="get debug string" Click="Button_Click"></Button>
 
 
 

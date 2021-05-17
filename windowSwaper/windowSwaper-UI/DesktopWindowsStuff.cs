@@ -30,6 +30,9 @@ namespace howto_list_desktop_windows
         private static List<IntPtr> WindowHandles;
         private static List<string> WindowTitles;
 
+        // Title of window that should be excluded
+        public static string windowTitleToExclude = "";
+
         // Return a list of the desktop windows' handles and titles.
         public static void GetDesktopWindowHandlesAndTitles(
             out List<IntPtr> handles, out List<string> titles)
@@ -61,8 +64,13 @@ namespace howto_list_desktop_windows
             // If the window is visible and has a title, save it.
             if (IsWindowVisible(hWnd) && string.IsNullOrEmpty(title) == false)
             {
-                WindowHandles.Add(hWnd);
-                WindowTitles.Add(title);
+                // If the window's title is not the one to exclude, save it.
+                if (!title.Equals(windowTitleToExclude)) 
+                {
+                    WindowHandles.Add(hWnd);
+                    WindowTitles.Add(title);
+                }
+                
             }
 
             // Return true to indicate that we

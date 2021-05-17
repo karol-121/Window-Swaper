@@ -16,3 +16,4 @@ E:\Dokumenty\Github\windowSwaper\windowSwaper\windowSwaper-UI\obj\Debug\netcorea
 E:\Dokumenty\Github\windowSwaper\windowSwaper\windowSwaper-UI\obj\Debug\netcoreapp3.1\windowSwaper-UI.dll
 E:\Dokumenty\Github\windowSwaper\windowSwaper\windowSwaper-UI\obj\Debug\netcoreapp3.1\windowSwaper-UI.pdb
 E:\Dokumenty\Github\windowSwaper\windowSwaper\windowSwaper-UI\obj\Debug\netcoreapp3.1\windowSwaper-UI.genruntimeconfig.cache
+E:\Dokumenty\Github\windowSwaper\windowSwaper\windowSwaper-UI\obj\Debug\netcoreapp3.1\windowSwaper-UI.csprojAssemblyReference.cache
