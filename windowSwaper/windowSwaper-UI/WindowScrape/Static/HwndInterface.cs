@@ -186,6 +186,53 @@
         private static extern bool SetWindowPos(IntPtr hWnd, IntPtr hWndInsertAfter, int X, int Y, int cx, int cy, uint uFlags);
         [DllImport("USER32.DLL")]
         private static extern bool SetWindowText(IntPtr hWnd, string lpString);
+
+        //added thingy from desktopwindowsstuff
+        private static List<IntPtr> WindowHandles;
+
+        [DllImport("user32.dll")]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        private static extern bool IsWindowVisible(IntPtr hWnd);
+
+        [DllImport("user32.dll", EntryPoint = "EnumDesktopWindows",
+        ExactSpelling = false, CharSet = CharSet.Auto, SetLastError = true)]
+        private static extern bool EnumDesktopWindows(IntPtr hDesktop, EnumDelegate lpEnumCallbackFunction, IntPtr lParam);
+
+        private delegate bool EnumDelegate(IntPtr hWnd, int lParam);
+
+        private static bool FilterCallback(IntPtr hWnd, int lParam)
+        {
+            // Get the window's title.
+            StringBuilder sb_title = new StringBuilder(1024);
+            int length = GetWindowText(hWnd, sb_title, sb_title.Capacity);
+            string title = sb_title.ToString();
+
+            // If the window is visible and has a title, save it.
+            if (IsWindowVisible(hWnd) && string.IsNullOrEmpty(title) == false)
+            {
+
+                WindowHandles.Add(hWnd);
+            }
+
+            // Return true to indicate that we
+            // should continue enumerating windows.
+            return true;
+        }
+
+        public static List<IntPtr> EnumVisibleChildren()
+        {
+            WindowHandles = new List<IntPtr>();
+
+            if (!EnumDesktopWindows(IntPtr.Zero, FilterCallback, IntPtr.Zero))
+            {
+                return null;
+            }
+            else
+            {
+                return WindowHandles;
+            }
+
+        }
     }
 }
 

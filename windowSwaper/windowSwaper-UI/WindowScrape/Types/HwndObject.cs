@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Drawing;
     using System.Runtime.CompilerServices;
+    using System.Text;
     using WindowScrape.Constants;
     using WindowScrape.Static;
 
@@ -115,6 +116,18 @@
             }
             return list;
         }
+
+        public static List<HwndObject> GetDesktopWindows()
+        {
+            List<HwndObject> list = new List<HwndObject>();
+            foreach (IntPtr ptr in HwndInterface.EnumVisibleChildren())
+            {
+                list.Add(new HwndObject(ptr));
+            }
+            return list;
+        }
+
+
 
         public static bool operator == (HwndObject a, HwndObject b)
         {

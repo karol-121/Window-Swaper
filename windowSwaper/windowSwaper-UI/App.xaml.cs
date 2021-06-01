@@ -26,7 +26,9 @@ namespace windowSwaper_UI
 
         private static List<IntPtr> handles;
         private static List<string> titles;
-        
+
+        private static List<HwndObject> windows;
+
         private static HwndObject window_1;
         private static HwndObject window_2;
 
@@ -36,14 +38,19 @@ namespace windowSwaper_UI
 
         public App()
         {
+
+            
+            
+
             notifyIcon = new Forms.NotifyIcon();
             notifyIcon.Icon = new Icon("resources/icon.ico");
-            notifyIcon.Text = "Window swaper";
+            notifyIcon.Text = "Window Swaper";
             notifyIcon.Click += NotifyIcon_Click;
             notifyIcon.Visible = true;
 
             hotkey = new HotKey(System.Windows.Input.Key.Oem8, KeyModifier.Win, OnHotKeyHandler);
-            DesktopWindowsStuff.windowTitleToExclude = "MainWindow"; //add title of the main window to be excluded when list of open widows is fetch
+
+            //DesktopWindowsStuff.windowTitleToExclude = "MainWindow"; //add title of the main window to be excluded when list of open widows is fetch
         }
 
 
@@ -52,7 +59,6 @@ namespace windowSwaper_UI
             MainWindow.Show();
             MainWindow.WindowState = WindowState.Normal;
             MainWindow.Activate();
-            
             
         }
 
@@ -64,7 +70,8 @@ namespace windowSwaper_UI
 
         public static String getDebugString()
         {
-            return hotkey.Key.ToString();
+            return window_1.ToString() + " | " + window_2.ToString();
+            //return hotkey.Key.ToString();
         }
 
         private static void OnHotKeyHandler(HotKey obj)
@@ -72,11 +79,15 @@ namespace windowSwaper_UI
             //thing that happen after hotkey is pressed
 
             //get list of active windows and their titles (titles will not be needed, but are required for this function to work)
-            DesktopWindowsStuff.GetDesktopWindowHandlesAndTitles(out handles, out titles);
+            //DesktopWindowsStuff.GetDesktopWindowHandlesAndTitles(out handles, out titles);
 
+            windows = HwndObject.GetDesktopWindows();
             //get windows to swap, swap only the main with the second main
-            window_1 = new HwndObject(handles[0]);
-            window_2 = new HwndObject(handles[1]);
+            //window_1 = new HwndObject(handles[0]);
+            //window_2 = new HwndObject(handles[1]);
+
+            window_1 = windows[0];
+            window_2 = windows[1];
 
             //get current locations of the windows
             window_1_location = window_1.Location;
@@ -101,17 +112,7 @@ namespace windowSwaper_UI
                 //move second main window to the right
                 window_2_location.X += horisontalResolution; //modify the point variable to new location
                 window_2.Location = window_2_location; //assign the modified location variable as main window location
-
             }
-
-        
-            
-
-        }
-
-        private void Application_Deactivated(object sender, EventArgs e)
-        {
-            
         }
     }
 }
