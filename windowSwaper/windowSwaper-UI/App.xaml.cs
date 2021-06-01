@@ -18,7 +18,8 @@ namespace windowSwaper_UI
     /// </summary>
     public partial class App : Application
     {
-        private static HotKey hotkey; 
+        private static HotKey hotkey;
+        private static int horisontalResolution = 1920;
 
         private static List<IntPtr> handles;
         private static List<string> titles;
@@ -32,32 +33,54 @@ namespace windowSwaper_UI
 
         public App()
         {
-            hotkey = new HotKey(System.Windows.Input.Key.K, KeyModifier.Ctrl, OnHotKeyHandler);
+            hotkey = new HotKey(System.Windows.Input.Key.Oem8, KeyModifier.Win, OnHotKeyHandler);
             DesktopWindowsStuff.windowTitleToExclude = "MainWindow"; //add title of the main window to be excluded when list of open widows is fetch
         }
 
 
         public static String getDebugString()
         {
-            return window_1.Location.ToString() + " " + window_2.Location.ToString();
+            return hotkey.Key.ToString();
         }
 
         private static void OnHotKeyHandler(HotKey obj)
         {
             //thing that happen after hotkey is pressed
 
+            //get list of active windows and their titles (titles will not be needed, but are required for this function to work)
             DesktopWindowsStuff.GetDesktopWindowHandlesAndTitles(out handles, out titles);
-            Debug.Print(titles[0] + " | " + titles[1]);
 
+            //get windows to swap, swap only the main with the second main
             window_1 = new HwndObject(handles[0]);
             window_2 = new HwndObject(handles[1]);
 
-
+            //get current locations of the windows
             window_1_location = window_1.Location;
             window_2_location = window_2.Location;
 
-            window_1.Location = window_2_location;
-            window_2.Location = window_1_location;
+            if (window_1.Location.X < 0 && window_2.Location.X > 0) //the main window is to the left and second main window is to the right 
+            {
+                //move main window to the right
+                window_1_location.X += horisontalResolution; //modify the point variable to new location
+                window_1.Location = window_1_location; //assign the modified location variable as main window location
+
+                //move second main window to the left
+                window_2_location.X -= horisontalResolution; //modify the point variable to new location
+                window_2.Location = window_2_location; //assign the modified location variable as main window location
+            }
+            else if (window_1.Location.X > 0 && window_2.Location.X < 0) //the main window is to the right and second main window is to the left
+            {
+                //move main window to the left
+                window_1_location.X -= horisontalResolution; //modify the point variable to new location
+                window_1.Location = window_1_location; //assign the modified location variable as main window location
+
+                //move second main window to the right
+                window_2_location.X += horisontalResolution; //modify the point variable to new location
+                window_2.Location = window_2_location; //assign the modified location variable as main window location
+
+            }
+
+        
             
 
         }

@@ -32,5 +32,10 @@ namespace windowSwaper_UI
         {
             debugString.Text = App.getDebugString();
         }
+
+        private void TextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            debugString.Text = e.Key.ToString();
+        }
     }
 }
