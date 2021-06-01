@@ -10,6 +10,7 @@ using System.Windows;
 using WindowScrape.Types;
 using WindowScrape.Static;
 using howto_list_desktop_windows;
+using Forms = System.Windows.Forms;
 
 namespace windowSwaper_UI
 {
@@ -19,7 +20,9 @@ namespace windowSwaper_UI
     public partial class App : Application
     {
         private static HotKey hotkey;
-        private static int horisontalResolution = 1920;
+        private static readonly int horisontalResolution = 1920;
+
+        private readonly Forms.NotifyIcon notifyIcon;
 
         private static List<IntPtr> handles;
         private static List<string> titles;
@@ -33,10 +36,31 @@ namespace windowSwaper_UI
 
         public App()
         {
+            notifyIcon = new Forms.NotifyIcon();
+            notifyIcon.Icon = new Icon("resources/icon.ico");
+            notifyIcon.Text = "Window swaper";
+            notifyIcon.Click += NotifyIcon_Click;
+            notifyIcon.Visible = true;
+
             hotkey = new HotKey(System.Windows.Input.Key.Oem8, KeyModifier.Win, OnHotKeyHandler);
             DesktopWindowsStuff.windowTitleToExclude = "MainWindow"; //add title of the main window to be excluded when list of open widows is fetch
         }
 
+
+        private void NotifyIcon_Click(object sender, EventArgs e)
+        {
+            MainWindow.Show();
+            MainWindow.WindowState = WindowState.Normal;
+            MainWindow.Activate();
+            
+            
+        }
+
+        protected override void OnExit(ExitEventArgs e)
+        {
+            notifyIcon.Dispose();
+            base.OnExit(e);
+        }
 
         public static String getDebugString()
         {
@@ -85,5 +109,9 @@ namespace windowSwaper_UI
 
         }
 
+        private void Application_Deactivated(object sender, EventArgs e)
+        {
+            
+        }
     }
 }
