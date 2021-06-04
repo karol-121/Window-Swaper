@@ -1,15 +1,8 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows;
 using WindowScrape.Types;
-using WindowScrape.Static;
-using howto_list_desktop_windows;
 using Forms = System.Windows.Forms;
 
 namespace windowSwaper_UI
@@ -24,9 +17,6 @@ namespace windowSwaper_UI
 
         private readonly Forms.NotifyIcon notifyIcon;
 
-        private static List<IntPtr> handles;
-        private static List<string> titles;
-
         private static List<HwndObject> windows;
 
         private static HwndObject window_1;
@@ -39,18 +29,14 @@ namespace windowSwaper_UI
         public App()
         {
 
-            
-            
 
             notifyIcon = new Forms.NotifyIcon();
-            notifyIcon.Icon = new Icon("resources/icon.ico");
-            notifyIcon.Text = "Window Swaper";
+            notifyIcon.Icon = new Icon("resources/icon-16.ico");
+            notifyIcon.Text = "Window Swapper";
             notifyIcon.Click += NotifyIcon_Click;
             notifyIcon.Visible = true;
 
             hotkey = new HotKey(System.Windows.Input.Key.Oem8, KeyModifier.Win, OnHotKeyHandler);
-
-            //DesktopWindowsStuff.windowTitleToExclude = "MainWindow"; //add title of the main window to be excluded when list of open widows is fetch
         }
 
 
@@ -70,49 +56,54 @@ namespace windowSwaper_UI
 
         public static String getDebugString()
         {
-            return window_1.ToString() + " | " + window_2.ToString();
-            //return hotkey.Key.ToString();
+            return "hello";
         }
 
-        private static void OnHotKeyHandler(HotKey obj)
+        private void OnHotKeyHandler(HotKey obj)
         {
             //thing that happen after hotkey is pressed
 
-            //get list of active windows and their titles (titles will not be needed, but are required for this function to work)
-            //DesktopWindowsStuff.GetDesktopWindowHandlesAndTitles(out handles, out titles);
-
-            windows = HwndObject.GetDesktopWindows();
-            //get windows to swap, swap only the main with the second main
-            //window_1 = new HwndObject(handles[0]);
-            //window_2 = new HwndObject(handles[1]);
-
-            window_1 = windows[0];
-            window_2 = windows[1];
-
-            //get current locations of the windows
-            window_1_location = window_1.Location;
-            window_2_location = window_2.Location;
-
-            if (window_1.Location.X < 0 && window_2.Location.X > 0) //the main window is to the left and second main window is to the right 
+            if (MainWindow.WindowState == WindowState.Minimized) //only swap windows, when ui window is minimized
             {
-                //move main window to the right
-                window_1_location.X += horisontalResolution; //modify the point variable to new location
-                window_1.Location = window_1_location; //assign the modified location variable as main window location
+                //get list of active windows and their titles (titles will not be needed, but are required for this function to work)
+                windows = HwndObject.GetDesktopWindows();
 
-                //move second main window to the left
-                window_2_location.X -= horisontalResolution; //modify the point variable to new location
-                window_2.Location = window_2_location; //assign the modified location variable as main window location
-            }
-            else if (window_1.Location.X > 0 && window_2.Location.X < 0) //the main window is to the right and second main window is to the left
+                //get windows to swap, swap only the main with the second main
+                window_1 = windows[0];
+                window_2 = windows[1];
+
+                //get current locations of the windows
+                window_1_location = window_1.Location;
+                window_2_location = window_2.Location;
+
+                if (window_1.Location.X < 0 && window_2.Location.X > 0) //the main window is to the left and second main window is to the right 
+                {
+                    //move main window to the right
+                    window_1_location.X += horisontalResolution; //modify the point variable to new location
+                    window_1.Location = window_1_location; //assign the modified location variable as main window location
+
+                    //move second main window to the left
+                    window_2_location.X -= horisontalResolution; //modify the point variable to new location
+                    window_2.Location = window_2_location; //assign the modified location variable as main window location
+                }
+                else if (window_1.Location.X > 0 && window_2.Location.X < 0) //the main window is to the right and second main window is to the left
+                {
+                    //move main window to the left
+                    window_1_location.X -= horisontalResolution; //modify the point variable to new location
+                    window_1.Location = window_1_location; //assign the modified location variable as main window location
+
+                    //move second main window to the right
+                    window_2_location.X += horisontalResolution; //modify the point variable to new location
+                    window_2.Location = window_2_location; //assign the modified location variable as main window location
+                }
+
+            } 
+            else
             {
-                //move main window to the left
-                window_1_location.X -= horisontalResolution; //modify the point variable to new location
-                window_1.Location = window_1_location; //assign the modified location variable as main window location
-
-                //move second main window to the right
-                window_2_location.X += horisontalResolution; //modify the point variable to new location
-                window_2.Location = window_2_location; //assign the modified location variable as main window location
+                //print message to user that the swap is disable when window is on
             }
+
+            
         }
     }
 }

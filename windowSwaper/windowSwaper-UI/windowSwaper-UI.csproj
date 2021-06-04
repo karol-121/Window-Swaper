@@ -9,8 +9,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Update="resources\icon.ico">
+    <None Update="resources\icon-16.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="resources\icon.ico">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </None>
   </ItemGroup>
 
