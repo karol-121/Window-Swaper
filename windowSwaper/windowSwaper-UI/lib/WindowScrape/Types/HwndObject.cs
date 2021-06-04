@@ -117,10 +117,10 @@
             return list;
         }
 
-        public static List<HwndObject> GetDesktopWindows()
+        public static List<HwndObject> GetTwoMostTopDesktopWindows()
         {
             List<HwndObject> list = new List<HwndObject>();
-            foreach (IntPtr ptr in HwndInterface.EnumVisibleChildren())
+            foreach (IntPtr ptr in HwndInterface.EnumTwoMostTopVisibleChildren())
             {
                 list.Add(new HwndObject(ptr));
             }

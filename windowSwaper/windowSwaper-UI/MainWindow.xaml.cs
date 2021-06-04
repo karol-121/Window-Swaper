@@ -26,6 +26,7 @@ namespace windowSwaper_UI
         public MainWindow()
         {
             InitializeComponent();
+            //this.Hide(); this allows the program to start without the window being open, can be usefull when the application will autorun on startup
            
         }
 
@@ -43,7 +44,7 @@ namespace windowSwaper_UI
         {
             if (WindowState == WindowState.Minimized)
             {
-                this.Hide();
+                Hide();
             } 
         }
     }

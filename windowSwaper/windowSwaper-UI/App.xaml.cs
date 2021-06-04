@@ -12,7 +12,6 @@ namespace windowSwaper_UI
     /// </summary>
     public partial class App : Application
     {
-        private static HotKey hotkey;
         private static readonly int horisontalResolution = 1920;
 
         private readonly Forms.NotifyIcon notifyIcon;
@@ -28,15 +27,13 @@ namespace windowSwaper_UI
 
         public App()
         {
-
-
             notifyIcon = new Forms.NotifyIcon();
             notifyIcon.Icon = new Icon("resources/icon-16.ico");
             notifyIcon.Text = "Window Swapper";
             notifyIcon.Click += NotifyIcon_Click;
             notifyIcon.Visible = true;
 
-            hotkey = new HotKey(System.Windows.Input.Key.Oem8, KeyModifier.Win, OnHotKeyHandler);
+            new HotKey(System.Windows.Input.Key.Oem8, KeyModifier.Win, OnHotKeyHandler);
         }
 
 
@@ -65,8 +62,8 @@ namespace windowSwaper_UI
 
             if (MainWindow.WindowState == WindowState.Minimized) //only swap windows, when ui window is minimized
             {
-                //get list of active windows and their titles (titles will not be needed, but are required for this function to work)
-                windows = HwndObject.GetDesktopWindows();
+                //get list of the two most top desktop windows, these will be the ones to be swapped
+                windows = HwndObject.GetTwoMostTopDesktopWindows();
 
                 //get windows to swap, swap only the main with the second main
                 window_1 = windows[0];
@@ -96,7 +93,7 @@ namespace windowSwaper_UI
                     window_2_location.X += horisontalResolution; //modify the point variable to new location
                     window_2.Location = window_2_location; //assign the modified location variable as main window location
                 }
-
+                
             } 
             else
             {

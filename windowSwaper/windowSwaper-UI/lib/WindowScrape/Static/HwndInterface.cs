@@ -204,33 +204,38 @@
         {
             // Get the window's title.
             StringBuilder sb_title = new StringBuilder(1024);
-            int length = GetWindowText(hWnd, sb_title, sb_title.Capacity);
+            _ = GetWindowText(hWnd, sb_title, sb_title.Capacity);
             string title = sb_title.ToString();
 
             // If the window is visible and has a title, save it.
             if (IsWindowVisible(hWnd) && string.IsNullOrEmpty(title) == false)
             {
-
                 WindowHandles.Add(hWnd);
             }
 
-            // Return true to indicate that we
-            // should continue enumerating windows.
-            return true;
-        }
-
-        public static List<IntPtr> EnumVisibleChildren()
-        {
-            WindowHandles = new List<IntPtr>();
-
-            if (!EnumDesktopWindows(IntPtr.Zero, FilterCallback, IntPtr.Zero))
+            
+            if (WindowHandles.Count <= 2) //we are only interested in two top most windows, therefore stop enumerating once we get these 2 windows
             {
-                return null;
+                // Return true to indicate that we
+                // should continue enumerating windows.
+                return true;
             }
             else
             {
-                return WindowHandles;
+                return false;
             }
+           
+     
+        }
+
+        public static List<IntPtr> EnumTwoMostTopVisibleChildren()
+        {
+            WindowHandles = new List<IntPtr>();
+
+            EnumDesktopWindows(IntPtr.Zero, FilterCallback, IntPtr.Zero);
+
+            return WindowHandles;
+
 
         }
     }

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:windowSwaper_UI"
         mc:Ignorable="d"
-        Title="MainWindow" Height="200" Width="300" ResizeMode="CanMinimize" StateChanged="MyWindow_StateChanged">
+        Title="Window Swapper" Height="200" Width="300" ResizeMode="CanMinimize" StateChanged="MyWindow_StateChanged">
 
     <Grid>
         <Grid.ColumnDefinitions>
