@@ -3,7 +3,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:windowSwaper_UI"
         mc:Ignorable="d"
         Title="Window Swapper" Height="200" Width="300" ResizeMode="CanMinimize" StateChanged="MyWindow_StateChanged">
 
@@ -11,21 +10,20 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="10"/>
             <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="10"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="10"/>
             <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="10"/>
         </Grid.RowDefinitions>
-        <TextBlock Grid.Column="1" Grid.Row="1" Text="Debug line:"></TextBlock>
-        <TextBlock x:Name="debugString" Grid.Column="1" Grid.Row="2" Text=""></TextBlock>
-        <Button Grid.Column="1" Grid.Row="3" Content="get debug string" Click="Button_Click"></Button>
-        <TextBox Grid.Column="1" Grid.Row="4" KeyDown="TextBox_KeyDown"></TextBox>
+        <TextBlock Grid.ColumnSpan="3" Name="currentShortcut" Grid.Column="1" Grid.Row="1" Text="current shorcut"></TextBlock>
+        <TextBlock Grid.ColumnSpan="3" Grid.Column="1" Grid.Row="3" Text="Hotkey is disabled when this window is open"></TextBlock>
+        
 
 
     </Grid>

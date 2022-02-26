@@ -27,17 +27,9 @@ namespace windowSwaper_UI
         {
             InitializeComponent();
             //this.Hide(); this allows the program to start without the window being open, can be usefull when the application will autorun on startup
-           
-        }
+            currentShortcut.Text = App.getCurrentKeyCombo();
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            debugString.Text = App.getDebugString();
-        }
 
-        private void TextBox_KeyDown(object sender, KeyEventArgs e)
-        {
-            debugString.Text = e.Key.ToString();
         }
 
         private void MyWindow_StateChanged(object sender, EventArgs e)

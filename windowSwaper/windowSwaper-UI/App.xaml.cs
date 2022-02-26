@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows;
+using System.Windows.Input;
 using WindowScrape.Types;
 using Forms = System.Windows.Forms;
 
@@ -24,6 +25,11 @@ namespace windowSwaper_UI
         private static System.Drawing.Point window_1_location;
         private static System.Drawing.Point window_2_location;
 
+        private static HotKey hotKey;
+
+        private static Key singleKey = Key.Oem3;
+        private static KeyModifier keyModifier = KeyModifier.Win;
+
 
         public App()
         {
@@ -33,7 +39,7 @@ namespace windowSwaper_UI
             notifyIcon.Click += NotifyIcon_Click;
             notifyIcon.Visible = true;
 
-            new HotKey(System.Windows.Input.Key.Oem8, KeyModifier.Win, OnHotKeyHandler);
+            hotKey = new HotKey(singleKey, keyModifier, OnHotKeyHandler);
         }
 
 
@@ -47,13 +53,14 @@ namespace windowSwaper_UI
 
         protected override void OnExit(ExitEventArgs e)
         {
+            hotKey.Dispose();
             notifyIcon.Dispose();
             base.OnExit(e);
         }
 
-        public static String getDebugString()
+        public static String getCurrentKeyCombo()
         {
-            return "hello";
+            return "Shortcut: " + keyModifier + " + " + singleKey;
         }
 
         private void OnHotKeyHandler(HotKey obj)
