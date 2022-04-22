@@ -30,10 +30,10 @@ namespace windowSwaper_UI
         public int Id { get; set; }
 
         // ******************************************************************
-        public HotKey(Key k, KeyModifier keyModifiers, Action<HotKey> action, bool register = true)
+        public HotKey(Key k, KeyModifier firstKeyModifier, Action<HotKey> action, bool register = true)
         {
             Key = k;
-            KeyModifiers = keyModifiers;
+            KeyModifiers = firstKeyModifier;
             Action = action;
             if (register)
             {
@@ -142,7 +142,8 @@ namespace windowSwaper_UI
         Ctrl = 0x0002,
         NoRepeat = 0x4000,
         Shift = 0x0004,
-        Win = 0x0008
+        Win = 0x0008,
+        Alt_Shift = Alt + Shift
     }
 
     // ******************************************************************

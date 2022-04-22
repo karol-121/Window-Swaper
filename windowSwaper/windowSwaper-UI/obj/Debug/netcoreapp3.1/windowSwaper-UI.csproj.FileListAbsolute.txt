@@ -1,5 +1,4 @@
 E:\Dokumenty\Github\windowSwaper\windowSwaper\windowSwaper-UI\bin\Debug\netcoreapp3.1\windowSwaper-UI.exe
-E:\Dokumenty\Github\windowSwaper\windowSwaper\windowSwaper-UI\bin\Debug\netcoreapp3.1\resources\icon-16.ico
 E:\Dokumenty\Github\windowSwaper\windowSwaper\windowSwaper-UI\bin\Debug\netcoreapp3.1\windowSwaper-UI.deps.json
 E:\Dokumenty\Github\windowSwaper\windowSwaper\windowSwaper-UI\bin\Debug\netcoreapp3.1\windowSwaper-UI.runtimeconfig.json
 E:\Dokumenty\Github\windowSwaper\windowSwaper\windowSwaper-UI\bin\Debug\netcoreapp3.1\windowSwaper-UI.runtimeconfig.dev.json
@@ -18,3 +17,4 @@ E:\Dokumenty\Github\windowSwaper\windowSwaper\windowSwaper-UI\obj\Debug\netcorea
 E:\Dokumenty\Github\windowSwaper\windowSwaper\windowSwaper-UI\obj\Debug\netcoreapp3.1\windowSwaper-UI.genruntimeconfig.cache
 E:\Dokumenty\Github\windowSwaper\windowSwaper\windowSwaper-UI\obj\Debug\netcoreapp3.1\windowSwaper-UI.csproj.AssemblyReference.cache
 E:\Dokumenty\Github\windowSwaper\windowSwaper\windowSwaper-UI\obj\Debug\netcoreapp3.1\windowSwaper-UI.GeneratedMSBuildEditorConfig.editorconfig
+E:\Dokumenty\Github\windowSwaper\windowSwaper\windowSwaper-UI\bin\Debug\netcoreapp3.1\resources\WindowSwaper.ico

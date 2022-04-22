@@ -6,14 +6,12 @@
     <RootNamespace>windowSwaper_UI</RootNamespace>
     <UseWPF>true</UseWPF>
     <UseWindowsForms>true</UseWindowsForms>
+    <ApplicationIcon>resources\WindowSwaper.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Update="resources\icon-16.ico">
+    <None Update="resources\WindowSwaper.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="resources\icon.ico">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </None>
   </ItemGroup>
 

@@ -27,14 +27,14 @@ namespace windowSwaper_UI
 
         private static HotKey hotKey;
 
-        private static Key singleKey = Key.Oem3;
-        private static KeyModifier keyModifier = KeyModifier.Win;
+        private static Key singleKey = Key.OemPeriod;
+        private static KeyModifier keyModifier = KeyModifier.Alt_Shift;
 
 
         public App()
         {
             notifyIcon = new Forms.NotifyIcon();
-            notifyIcon.Icon = new Icon("resources/icon-16.ico");
+            notifyIcon.Icon = new Icon("resources/WindowSwaper.ico");
             notifyIcon.Text = "Window Swapper";
             notifyIcon.Click += NotifyIcon_Click;
             notifyIcon.Visible = true;
@@ -102,11 +102,6 @@ namespace windowSwaper_UI
                 }
                 
             } 
-            else
-            {
-                //print message to user that the swap is disable when window is on
-            }
-
             
         }
     }
